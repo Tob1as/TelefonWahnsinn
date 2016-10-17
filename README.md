@@ -56,11 +56,10 @@ EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovap
 * start it with: ``` java -jar TelefonWahnsinn-jar-with-dependencies.jar ```
 
 RaspberryPi GPIO Notice:
-<code>
-	sudo nano /etc/rc.local  (copy next lines before: exit 0)
-		echo 4 > /sys/class/gpio/export
-		echo in > /sys/class/gpio/gpio4/direction
-</code>
+* ``` sudo nano /etc/rc.local ```
+* copy next lines before: exit 0 and then reboot
+* ``` echo 4 > /sys/class/gpio/export ```
+* ``` echo in > /sys/class/gpio/gpio4/direction ```
 
 #### Docker (e.g. on RaspberryPi)
 
