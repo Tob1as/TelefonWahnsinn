@@ -73,6 +73,7 @@ RaspberryPi GPIO Notice:
 
 * ``` git clone https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn.git ```
 * ``` cd telefonwahnsinn ```
+* ``` docker build -t telefonwahnsinn . ```
 * ``` mkdir -p /home/pi/.config/telefonwahnsinn/config && wget -O /home/pi/.config/telefonwahnsinn/config/config.xml https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn/raw/master/config/config.xml.example ```
 * Make your settings: ``` nano /home/pi/.config/telefonwahnsinn/config/config.xml ```
 * ``` docker run --name telefonwahnsinn -d -v /home/pi/.config/telefonwahnsinn/config:/config:ro -v /sys/class/gpio:/sys/class/gpio:ro telefonwahnsinn ```
