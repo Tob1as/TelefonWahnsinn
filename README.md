@@ -55,6 +55,13 @@ EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovap
 	* Note: If you want use the doorsensor, then use a Raspberry Pi to run the JAR-File and *magnetic contact* (DE: *Magnetkontakt/Reedkontakt*) e.g on GPIO Pin 4.
 * start it with: ``` java -jar TelefonWahnsinn-jar-with-dependencies.jar ```
 
+RaspberryPi GPIO Notice:
+<code>
+	sudo nano /etc/rc.local  (copy next lines before: exit 0)
+		echo 4 > /sys/class/gpio/export
+		echo in > /sys/class/gpio/gpio4/direction
+</code>
+
 #### Docker (e.g. on RaspberryPi)
 
 ##### Requirements
@@ -64,10 +71,11 @@ EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovap
 
 ##### Usage
 
-* ``` docker pull registry.gitlab.i3mainz.hs-mainz.de/zik/telefonwahnsinn ```
-* ``` mkdir -p /home/pi/.config/telefonwahnsinn/config && wget -O /home/pi/.config/telefonwahnsinn/config/config.xml https://gitlab.i3mainz.hs-mainz.de/ZIK/TelefonWahnsinn/raw/master/config/config.xml.example ```
+* ``` git clone https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn.git ```
+* ``` cd telefonwahnsinn ```
+* ``` mkdir -p /home/pi/.config/telefonwahnsinn/config && wget -O /home/pi/.config/telefonwahnsinn/config/config.xml https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn/raw/master/config/config.xml.example ```
 * Make your settings: ``` nano /home/pi/.config/telefonwahnsinn/config/config.xml ```
-* ``` docker run --name telefonwahnsinn -d -v /home/pi/.config/telefonwahnsinn/config:/config:ro -v /sys/class/gpio:/sys/class/gpio:ro registry.gitlab.i3mainz.hs-mainz.de/zik/telefonwahnsinn:latest ```
+* ``` docker run --name telefonwahnsinn -d -v /home/pi/.config/telefonwahnsinn/config:/config:ro -v /sys/class/gpio:/sys/class/gpio:ro telefonwahnsinn ```
 
 
 #### Have FUN!
