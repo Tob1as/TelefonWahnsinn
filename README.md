@@ -7,7 +7,7 @@ EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovap
 
 ### Developer
 * Felix W. (Lead developer | ZIK until mid-2015)
-* Tobias Hargesheimer (developer | ZIK before 2015, GuV since 2015 )
+* Tobias H. (developer | ZIK before 2015, GuV since 2015 )
 * for [HS-Mainz](https://www.hs-mainz.de/)
 
 
