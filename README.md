@@ -70,9 +70,11 @@ RaspberryPi GPIO Notice:
 
 ##### Usage
 
-* ``` git clone https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn.git ```
+* ``` git clone https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn.git telefonwahnsinn ```
 * ``` cd telefonwahnsinn ```
-* build jar-file with installed Java and Maven ``` chmod +x mnvn ``` and then ``` ./mnvn ``` and copy it from target-folder
+* Optional: build jar-file with installed Java and Maven MANUAL:
+	* build jar-file with installed Java and Maven ``` chmod +x mnvn && ./mnvn clean package ``` and ``` cp target/TelefonWahnsinn-jar-with-dependencies.jar ../TelefonWahnsinn.jar ```
+	* ``` mv Dockerfile Dockerfile-backup.txt && mv Dockerfile-manual.txt Dockerfile ```
 * ``` docker build -t telefonwahnsinn . ```
 * ``` mkdir -p /home/pi/.config/telefonwahnsinn && wget -O /home/pi/.config/telefonwahnsinn/config.xml https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn/raw/master/config/config.xml.example ```
 * Make your settings: ``` nano /home/pi/.config/telefonwahnsinn/config.xml ```
