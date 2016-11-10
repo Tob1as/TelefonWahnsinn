@@ -15,6 +15,46 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
+	
+	<repositories>
+		<repository>
+			<id>mvnrepository</id>
+			<url>https://mvnrepository.com/artifact</url>
+		</repository>
+		<repository>
+			<id>pyx4me.com</id>
+			<url>http://www.pyx4me.com/maven2-snapshot</url>
+		</repository>
+		<repository>
+			<id>search.maven.org</id>
+			<url>http://search.maven.org/</url>
+		</repository>
+		<repository>
+			<id>mirrors.ibiblio.org</id>
+			<url>http://mirrors.ibiblio.org/pub/mirrors/maven2/</url>
+		</repository>
+		<repository>
+			<id>repo.typesafe.com</id>
+			<url>http://repo.typesafe.com/typesafe/releases/</url>
+		</repository>
+		<repository>
+			<id>gradle.artifactoryonline.com</id>
+			<url>http://gradle.artifactoryonline.com/gradle/libs/</url>
+		</repository>
+		<repository>
+			<id>repo.jfrog.org</id>
+			<url>http://repo.jfrog.org/artifactory/libs-releases/</url>
+		</repository>
+		<repository>
+			<id>repo.maven.apache.org</id>
+			<url>http://repo.maven.apache.org/maven2</url>
+		</repository>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net repository</name>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<finalName>TelefonWahnsinn</finalName>
