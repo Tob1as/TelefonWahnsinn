@@ -1,6 +1,10 @@
 # Pull base image
-FROM resin/raspberrypi2-debian:latest
+FROM resin/rpi-raspbian:latest
+#FROM jsurf/rpi-raspbian:latest
+
 MAINTAINER Tobias Hargesheimer tobias.hargesheimer@hs-mainz.de
+
+#RUN [ "cross-build-start" ]
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -13,6 +17,9 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-armhf
 
 ADD target/TelefonWahnsinn-jar-with-dependencies.jar /TelefonWahnsinn.jar
 COPY config /config
+
+#RUN [ "cross-build-end" ]
+
 VOLUME ["/config","/sys/class/gpio"]
 
 # Define default command

@@ -1,7 +1,10 @@
 # Pull base image
 FROM resin/rpi-raspbian:latest
+#FROM jsurf/rpi-raspbian:latest
 
 MAINTAINER Tobias Hargesheimer <docker@ison.ws>
+
+#RUN [ "cross-build-start" ]
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -30,6 +33,8 @@ RUN git clone ${REPOSITORY} PhoneMadness/ \
 	&& mkdir /config && cp config/config.xml.example /config/config.xml \
 	&& cd .. && rm -r PhoneMadness/ 
 
+#RUN [ "cross-build-end" ]
+	
 # Define Volumes
 VOLUME ["/config","/sys/class/gpio"]
 
