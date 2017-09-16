@@ -1,6 +1,5 @@
 # Pull base image
 FROM resin/rpi-raspbian:latest
-#FROM jsurf/rpi-raspbian:latest
 
 MAINTAINER Tobias Hargesheimer <docker@ison.ws>
 
