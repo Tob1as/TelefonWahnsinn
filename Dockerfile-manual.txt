@@ -1,7 +1,7 @@
 # Pull base image
 FROM resin/rpi-raspbian:latest
 
-MAINTAINER Tobias Hargesheimer tobias.hargesheimer@hs-mainz.de
+MAINTAINER Tobias Hargesheimer <docker@ison.ws>
 
 #RUN [ "cross-build-start" ]
 

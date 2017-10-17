@@ -19,8 +19,8 @@ RUN apt-get update && apt-get install -y \
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-armhf
 # Repository 
-ENV REPOSITORY https://gitlab.i3mainz.hs-mainz.de/ZIK/TelefonWahnsinn.git
-ENV REPOSITORY_M2_WRAPPER_PROPERTIES https://gitlab.i3mainz.hs-mainz.de/ZIK/TelefonWahnsinn/blob/master/maven/dockerfile.maven-wrapper.properties
+ENV REPOSITORY https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn.git
+ENV REPOSITORY_M2_WRAPPER_PROPERTIES https://raw.githubusercontent.com/TobiasH87/de.hs-mainz.telefonwahnsinn/master/maven/dockerfile.maven-wrapper.properties
 
 # Build Java Application 
 RUN git clone ${REPOSITORY} PhoneMadness/ \
