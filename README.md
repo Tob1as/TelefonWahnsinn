@@ -41,6 +41,7 @@ EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovap
 			<sensor type="telephone" name="Phone1" ip="10.112.1.1" username="user" password="password" ></sensor>
 			<sensor type="telephone" name="Phone2" ip="10.112.1.2" username="user" password="password" ></sensor>
 			<sensor type="telephone" name="Phone myself" ip="10.112.1.3" username="user" password="password" ></sensor>
+			<!--<sensor type="fritzbox" ip="192.168.178.1" name="FritzBox"></sensor>-->
 			<sensor type="gpio" name="Doorsensor" pin="4" ></sensor>
 		</sensors>
 		<player type="mpd" ip="localhost" port="6600" password="password"></player>
