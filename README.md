@@ -62,6 +62,9 @@ RaspberryPi GPIO Notice:
 * ``` echo 4 > /sys/class/gpio/export ```
 * ``` echo in > /sys/class/gpio/gpio4/direction ```
 
+Fritz!Box Notice:
+* Fritz!Box need active CallMonitor #96*5* (Port: 1012) [or see here](https://www.janrufmonitor.de/ueberwachung-freischalten/)
+
 #### Docker (e.g. on RaspberryPi)
 
 ##### Requirements
