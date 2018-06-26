@@ -7,7 +7,7 @@ EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovap
 
 ### Developer
 * Felix W. (Lead developer | ZIK until mid-2015)
-* Tobias H. (developer | ZIK before 2015, GuV since 2015 )
+* Tobias H. (developer | ZIK before 2015, GuV since 2015)
 * for [HS-Mainz](https://www.hs-mainz.de/)
 
 
@@ -74,13 +74,20 @@ Fritz!Box Notice:
 
 ##### Usage
 
+* ``` docker pull tobi312/rpi-phonemadness:latest ```
+* ``` mkdir -p /home/pi/.config/telefonwahnsinn/config && wget -O /home/pi/.config/telefonwahnsinn/config/config.xml https://raw.githubusercontent.com/TobiasH87/de.hs-mainz.telefonwahnsinn/master/config/config.xml.example ```
+* Make your settings: ``` nano /home/pi/.config/telefonwahnsinn/config/config.xml ```
+* ``` docker run --name telefonwahnsinn -d -v /home/pi/.config/telefonwahnsinn/config:/config:ro -v /sys/class/gpio:/sys/class/gpio:ro tobi312/rpi-phonemadness:latest ```
+
+or:
+
 * ``` git clone https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn.git telefonwahnsinn ```
 * ``` cd telefonwahnsinn ```
 * Optional: build jar-file with installed Java and Maven MANUAL:
 	* ``` chmod +x mnvn && ./mnvn clean package ``` and ``` cp target/TelefonWahnsinn-jar-with-dependencies.jar ./ ```
 	* ``` mv Dockerfile Dockerfile-backup.txt && mv Dockerfile-manual.txt Dockerfile ```
 * ``` docker build -t telefonwahnsinn . ```
-* ``` mkdir -p /home/pi/.config/telefonwahnsinn && wget -O /home/pi/.config/telefonwahnsinn/config.xml https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn/raw/master/config/config.xml.example ```
+* ``` mkdir -p /home/pi/.config/telefonwahnsinn && wget -O /home/pi/.config/telefonwahnsinn/config.xml https://raw.githubusercontent.com/TobiasH87/de.hs-mainz.telefonwahnsinn/master/config/config.xml.example ```
 * Make your settings: ``` nano /home/pi/.config/telefonwahnsinn/config.xml ```
 * ``` docker run --name telefonwahnsinn -d -v /home/pi/.config/telefonwahnsinn:/config:ro -v /sys/class/gpio:/sys/class/gpio:ro telefonwahnsinn ```
 
