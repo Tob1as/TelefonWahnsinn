@@ -3,7 +3,7 @@ FROM resin/rpi-raspbian:latest
 
 MAINTAINER Tobias Hargesheimer <docker@ison.ws>
 
-#RUN [ "cross-build-start" ]
+RUN [ "cross-build-start" ]
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -17,7 +17,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-armhf
 ADD target/TelefonWahnsinn-jar-with-dependencies.jar /TelefonWahnsinn.jar
 COPY config /config
 
-#RUN [ "cross-build-end" ]
+RUN [ "cross-build-end" ]
 
 VOLUME ["/config","/sys/class/gpio"]
 
