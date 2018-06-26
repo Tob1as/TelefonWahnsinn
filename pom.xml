@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>TelefonWahnsinn</name>
-	<url>https://gitlab.i3mainz.hs-mainz.de/ZIK/TelefonWahnsinn/</url>
+	<url>https://gitlab.rlp.net/hsmainzgv/employee/TelefonWahnsinn</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,6 +16,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	
+	<!--
 	<repositories>
 		<repository>
 			<id>mvnrepository</id>
@@ -55,6 +56,7 @@
 			<url>http://download.java.net/maven/2</url>
 		</repository>
 	</repositories>
+	-->
 
 	<build>
 		<finalName>TelefonWahnsinn</finalName>
