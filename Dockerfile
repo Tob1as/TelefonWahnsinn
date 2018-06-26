@@ -1,5 +1,5 @@
 # Pull image to build java file with maven
-FROM 8-jdk-alpine AS java-builder
+FROM openjdk:8-jdk-alpine AS java-builder
 
 # Repository settings
 #ENV REPOSITORY https://github.com/TobiasH87/PRIVATE.telefonwahnsinn
