@@ -2,7 +2,7 @@
 FROM openjdk:8-jdk-alpine AS java-builder
 
 # Repository settings
-#ENV REPOSITORY https://github.com/TobiasH87/PRIVATE.telefonwahnsinn
+#ENV REPOSITORY https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn
 ENV REPOSITORY_M2_WRAPPER_PROPERTIES https://raw.githubusercontent.com/TobiasH87Docker/rpi-phonemadness/master/maven-wrapper.properties
 
 # build
