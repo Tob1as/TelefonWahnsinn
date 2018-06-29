@@ -38,7 +38,7 @@ upload:
   tags:     
     - docker
   script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.i3mainz.hs-mainz.de
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.ison.ws
     - docker build -t $IMAGE_NAME .
     - docker push $IMAGE_NAME
   only:

@@ -1,6 +1,9 @@
 FROM resin/raspberry-pi-alpine:3.6
 
-MAINTAINER Tobias Hargesheimer <docker@ison.ws>
+LABEL maintainer="Tobias Hargesheimer <docker@ison.ws>"
+LABEL description="TelefonWahnsinn (PhoneMadness): \
+A Application written in JAVA monitors various sensors (Telephone -Innovaphone-, Fritz!Box, doorsensor) and \
+switched accordingly the music (player: MPD, XBMC or VLC) to stop/pause or play."
 
 ENV LANG C.UTF-8
 

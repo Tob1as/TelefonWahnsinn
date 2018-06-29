@@ -1,7 +1,12 @@
 # Pull base image
 FROM resin/rpi-raspbian:latest
 
-MAINTAINER Tobias Hargesheimer <docker@ison.ws>
+LABEL maintainer="Tobias Hargesheimer <docker@ison.ws>"
+LABEL description="TelefonWahnsinn (PhoneMadness): \
+A Application written in JAVA monitors various sensors (Telephone -Innovaphone-, Fritz!Box, doorsensor) and \
+switched accordingly the music (player: MPD, XBMC or VLC) to stop/pause or play."
+
+ENV LANG C.UTF-8
 
 #RUN [ "cross-build-start" ]
 
@@ -20,13 +25,11 @@ RUN apt-get update && apt-get install -y \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-armhf
 # Repository 
 ENV REPOSITORY https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn.git
-ENV REPOSITORY_M2_WRAPPER_PROPERTIES https://raw.githubusercontent.com/TobiasH87/de.hs-mainz.telefonwahnsinn/master/maven/dockerfile.maven-wrapper.properties
 
 # Build Java Application 
 RUN git clone ${REPOSITORY} PhoneMadness/ \
 	&& cd PhoneMadness/ \
 	&& chmod +x mvnw \
-	&& cd maven && rm maven-wrapper.properties && wget ${REPOSITORY_M2_WRAPPER_PROPERTIES} -O maven-wrapper.properties && sed -i -e 's/https/http/g' maven-wrapper.properties && cd .. \
 	&& ./mvnw clean package \
 	&& cp target/TelefonWahnsinn-jar-with-dependencies.jar /TelefonWahnsinn.jar \
 	&& mkdir /config && cp config/config.xml.example /config/config.xml \
