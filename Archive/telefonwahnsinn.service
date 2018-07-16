@@ -1,0 +1,76 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          TelefonWahnsinn
+# Required-Start:    $remote_fs $network
+# Required-Stop:     $remote_fs $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: start/stop TelefonWahnsinn
+# Description:       Init Script for start/stop TelefonWahnsinn
+### END INIT INFO
+
+user="pi"
+path="/home/pi/TelefonWahnsinn/"
+jarfilename="TelefonWahnsinn"
+
+grep_pid() {
+	echo `ps -ef | grep ${jarfilename} | grep -v grep | awk '{ print $2 }'`
+}
+
+start() {
+	# follow 2 command must write in /etc/rc.local
+	#echo 4 > /sys/class/gpio/export
+	#echo in > /sys/class/gpio/gpio4/direction
+	
+	PID=$(grep_pid)
+	if [ -n "$PID" ]; then
+		echo "${jarfilename} is running (pid $PID)."
+	else 
+		su -l $user -c "cd ${path} && /usr/bin/java -jar ${path}${jarfilename}.jar > /dev/null 2>&1" &
+		echo "${jarfilename} is starting..."
+	fi
+}
+
+stop() {
+	PID=$(grep_pid)
+	if [ -n "$PID" ]; then
+		kill -9 $PID
+		echo "${jarfilename} is stopped."
+	else 
+		echo "${jarfilename} is NOT running."
+	fi
+}
+
+status() {
+	PID=$(grep_pid)
+	if [ -n "$PID" ]; then
+		echo "${jarfilename} is running (pid $PID)."
+		exit 0
+	else
+		echo "${jarfilename} is NOT running."
+		exit 3
+	fi
+}
+
+case "$1" in
+	start)
+		start
+		exit 0
+	;;
+	stop)
+		stop
+		exit 3
+	;;
+	status)
+		status
+	;;
+	restart)
+		stop
+		start
+		exit 0
+	;;
+    *)
+        echo "Usage: $0 {start|stop|status|restart}"
+        exit 2
+        ;;
+esac
