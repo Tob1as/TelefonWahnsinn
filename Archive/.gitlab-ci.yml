@@ -5,9 +5,7 @@ services:
 variables:
   MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
-  IMAGE_NAME: "registry.gitlab.i3mainz.hs-mainz.de/zik/telefonwahnsinn:latest"
-  
-# Cache downloaded dependencies and plugins between builds.
+
 cache:
   paths:
     - .m2/
@@ -35,11 +33,11 @@ build:
 
 upload:
   stage: upload
-  tags:     
-    - docker
+  #tags:     
+  #  - docker
   script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.ison.ws
-    - docker build -t $IMAGE_NAME .
-    - docker push $IMAGE_NAME
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+    - docker build -t "$CI_REGISTRY_IMAGE:latest" .
+    - docker push "$CI_REGISTRY_IMAGE:latest"
   only:
     - tags

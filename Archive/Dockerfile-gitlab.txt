@@ -1,5 +1,6 @@
-# Pull base image
-FROM resin/rpi-raspbian:latest
+# Pull image to run the application
+#FROM resin/raspberry-pi-openjdk:openjdk-8-jdk
+FROM resin/raspberry-pi-alpine-openjdk:openjdk-8-jdk
 
 LABEL maintainer="Tobias Hargesheimer <docker@ison.ws>"
 LABEL description="TelefonWahnsinn (PhoneMadness): \
@@ -8,22 +9,11 @@ switched accordingly the music (player: MPD, XBMC or VLC) to stop/pause or play.
 
 ENV LANG C.UTF-8
 
-RUN [ "cross-build-start" ]
-
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    openjdk-8-jre \
-    --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
-
-# Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-armhf
-
+# Copy application from build with maven
 ADD target/TelefonWahnsinn-jar-with-dependencies.jar /TelefonWahnsinn.jar
 COPY config /config
 
-RUN [ "cross-build-end" ]
-
+# Define Volumes
 VOLUME ["/config","/sys/class/gpio"]
 
 # Define default command

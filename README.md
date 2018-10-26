@@ -6,8 +6,8 @@ EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovap
 
 
 ### Developer
-* Felix W. (Lead developer | ZIK until mid-2015)
-* Tobias H. (developer | ZIK before 2015, GuV since 2015)
+* Felix W. (developer | ZIK until mid-2015)
+* Tobias H. (developer | ZIK before 2015, GuV from 01.2015 to 12.2018)
 * for [HS-Mainz](https://www.hs-mainz.de/)
 
 
@@ -34,7 +34,7 @@ EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovap
 ##### Usage
 
 * Download the latest release of *TelefonWahnsinn-jar-with-dependencies.jar* in a folder or build your own jar-file with Eclipse and Maven 
-* create a *config* folder in this folder and download the *config.xml.example* configuration file and rename it in config.xml. Example content:
+* create a *config* folder, in this folder download the configuration file called *config.xml.example* and rename it in config.xml. Example content:
   ```xml
 	<wahnsinnsConfig>
 		<sensors>
@@ -63,7 +63,7 @@ RaspberryPi GPIO Notice:
 * ``` echo in > /sys/class/gpio/gpio4/direction ```
 
 Fritz!Box Notice:
-* Fritz!Box need active CallMonitor #96*5* (Port: 1012) [or see here](https://www.janrufmonitor.de/ueberwachung-freischalten/)
+* Fritz!Box need active CallMonitor ```#96*5*``` (Port: 1012) [or see here](https://www.janrufmonitor.de/ueberwachung-freischalten/).
 
 #### Docker (e.g. on RaspberryPi)
 
@@ -78,18 +78,6 @@ Fritz!Box Notice:
 * ``` mkdir -p /home/pi/.config/telefonwahnsinn/config && wget -O /home/pi/.config/telefonwahnsinn/config/config.xml https://raw.githubusercontent.com/TobiasH87/de.hs-mainz.telefonwahnsinn/master/config/config.xml.example ```
 * Make your settings: ``` nano /home/pi/.config/telefonwahnsinn/config/config.xml ```
 * ``` docker run --name telefonwahnsinn -d -v /home/pi/.config/telefonwahnsinn/config:/config:ro -v /sys/class/gpio:/sys/class/gpio:ro tobi312/rpi-phonemadness:latest ```
-
-or:
-
-* ``` git clone https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn.git telefonwahnsinn ```
-* ``` cd telefonwahnsinn ```
-* Optional: build jar-file with installed Java and Maven MANUAL:
-	* ``` chmod +x mnvn && ./mnvn clean package ``` and ``` cp target/TelefonWahnsinn-jar-with-dependencies.jar ./ ```
-	* ``` mv Dockerfile Dockerfile-backup.txt && mv Dockerfile-manual.txt Dockerfile ```
-* ``` docker build -t telefonwahnsinn . ```
-* ``` mkdir -p /home/pi/.config/telefonwahnsinn && wget -O /home/pi/.config/telefonwahnsinn/config.xml https://raw.githubusercontent.com/TobiasH87/de.hs-mainz.telefonwahnsinn/master/config/config.xml.example ```
-* Make your settings: ``` nano /home/pi/.config/telefonwahnsinn/config.xml ```
-* ``` docker run --name telefonwahnsinn -d -v /home/pi/.config/telefonwahnsinn:/config:ro -v /sys/class/gpio:/sys/class/gpio:ro telefonwahnsinn ```
 
 
 #### Have FUN!
