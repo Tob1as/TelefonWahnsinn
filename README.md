@@ -6,9 +6,8 @@ EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovap
 
 
 ### Developer
-* Felix W. (developer | ZIK until mid-2015)
-* Tobias H. (developer | ZIK before 2015, GuV from 01.2015 to 12.2018)
-* for [HS-Mainz](https://www.hs-mainz.de/)
+* Felix W.
+* [Tobias H.](https://github.com/Tob1as)
 
 
 #### used libraries : 
