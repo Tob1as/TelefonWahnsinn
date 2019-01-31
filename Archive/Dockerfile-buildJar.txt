@@ -1,5 +1,5 @@
 # Pull base image
-FROM resin/rpi-raspbian:latest
+FROM balenalib/rpi-raspbian:latest
 
 LABEL maintainer="Tobias Hargesheimer <docker@ison.ws>"
 LABEL description="TelefonWahnsinn (PhoneMadness): \
