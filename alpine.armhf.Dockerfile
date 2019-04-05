@@ -3,11 +3,7 @@ FROM openjdk:8-jdk-alpine AS java-builder
 
 ENV LANG C.UTF-8
 
-# Repository settings
-#ENV REPOSITORY https://github.com/TobiasH87/de.hs-mainz.telefonwahnsinn
-
 # build
-#RUN git clone ${REPOSITORY} /telefonwahnsinn/
 COPY .  /telefonwahnsinn
 RUN cd /telefonwahnsinn \
 	&& chmod +x mvnw \
@@ -17,10 +13,12 @@ RUN cd /telefonwahnsinn \
 #FROM balenalib/raspberry-pi-openjdk:openjdk-8-jdk
 FROM balenalib/raspberry-pi-alpine-openjdk:openjdk-8-jdk
 
-LABEL maintainer="Tobias Hargesheimer <docker@ison.ws>"
-LABEL description="TelefonWahnsinn (PhoneMadness): \
-A Application written in JAVA monitors various sensors (Telephone -Innovaphone-, Fritz!Box, doorsensor) and \
-switched accordingly the music (player: MPD, XBMC or VLC) to stop/pause or play."
+LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
+	org.opencontainers.image.title="TelefonWahnsinn (PhoneMadness)" \
+	org.opencontainers.image.description="AlpineLinux with PhoneMadness on arm arch. TelefonWahnsinn (=PhoneMadness): A Application written in JAVA monitors various sensors (Telephone -Innovaphone-, Fritz!Box, doorsensor) and switched accordingly the music (player: MPD, XBMC or VLC) to stop/pause or play." \
+	org.opencontainers.image.licenses="Apache-2.0" \
+	org.opencontainers.image.url="https://hub.docker.com/r/tobi312/rpi-phonemadness" \
+	org.opencontainers.image.source="https://github.com/Tob1as/TelefonWahnsinn"
 
 ENV LANG C.UTF-8
 

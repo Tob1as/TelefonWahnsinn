@@ -2,8 +2,9 @@
 
 DE: *"Eine in JAVA geschriebene Anwendung überwacht verschiedene Sensoren (Telefon -Innovaphone-, Fritz!Box, Türsensor) und schaltet dementsprechend die Musik (Player: MPD, XBMC oder VLC) auf stop/pause oder play."*
 
-EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovaphone-, Fritz!Box, doorsensor) and switched accordingly the music (player: MPD, XBMC or VLC) to stop / pause or play."*
+EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovaphone-, Fritz!Box, doorsensor) and switched accordingly the music (player: MPD, XBMC or VLC) to stop / pause or play."*  
 
+We/I used it in our office. ;)  
 
 ### Developer
 * Felix W.
@@ -74,7 +75,7 @@ Fritz!Box Notice:
 ##### Usage
 
 * ``` docker pull tobi312/rpi-phonemadness:latest ```
-* ``` mkdir -p /home/pi/.config/telefonwahnsinn/config && wget -O /home/pi/.config/telefonwahnsinn/config/config.xml https://raw.githubusercontent.com/TobiasH87/de.hs-mainz.telefonwahnsinn/master/config/config.xml.example ```
+* ``` mkdir -p /home/pi/.config/telefonwahnsinn/config && wget -O /home/pi/.config/telefonwahnsinn/config/config.xml https://raw.githubusercontent.com/Tob1as/TelefonWahnsinn/master/config/config.xml.example ```
 * Make your settings: ``` nano /home/pi/.config/telefonwahnsinn/config/config.xml ```
 * ``` docker run --name telefonwahnsinn -d -v /home/pi/.config/telefonwahnsinn/config:/config:ro -v /sys/class/gpio:/sys/class/gpio:ro tobi312/rpi-phonemadness:latest ```
 

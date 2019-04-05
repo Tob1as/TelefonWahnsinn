@@ -1,5 +1,9 @@
+# Java and Settingsfile
 /target/
 .settings
 .classpath
 .project
 /config/config.xml
+# https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
+.idea/
+*.iml

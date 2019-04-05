@@ -2,6 +2,10 @@ image: docker:git
 services:   
   - docker:dind
 
+before_script:
+  - export CI_BUILD_DATE=$(date -u +%Y%m%d-%H%M%S)
+  - export CI_DOCKER_IMAGE_VERSION=$CI_BUILD_DATE.${CI_COMMIT_SHA:0:8}
+
 variables:
   MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
@@ -11,12 +15,12 @@ cache:
     - .m2/
 
 stages:
- - build
- - upload
+  - java
+  - docker
 
-build:
+buildjar:
   image: maven:3-jdk-8
-  stage: build
+  stage: java
   artifacts:
     paths:
       - target/*.jar
@@ -30,14 +34,18 @@ build:
    - mvn clean package
   only:
     - tags
+    - schedules
 
-upload:
-  stage: upload
+buildDocker:
+  stage: docker
   #tags:     
   #  - docker
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
-    - docker build -t "$CI_REGISTRY_IMAGE:latest" .
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_DOCKER_IMAGE_VERSION" -f alpine.armhf.buildwithGitLab.Dockerfile .
+    - docker tag "$CI_REGISTRY_IMAGE:$CI_DOCKER_IMAGE_VERSION" "$CI_REGISTRY_IMAGE:latest"
+    #- docker push "$CI_REGISTRY_IMAGE:$CI_DOCKER_IMAGE_VERSION"
     - docker push "$CI_REGISTRY_IMAGE:latest"
   only:
     - tags
+    - schedules
