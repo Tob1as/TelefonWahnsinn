@@ -1,4 +1,5 @@
 # Pull base image
+#FROM balenalib/raspberry-pi-openjdk:8-jdk-latest
 FROM balenalib/rpi-raspbian:stretch
 
 LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
@@ -9,27 +10,28 @@ LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
 	org.opencontainers.image.source="https://github.com/Tob1as/TelefonWahnsinn"
 
 # set to "cross-build-start" if build on x86_64
-ARG CROSS_BUILD_START=":"
+#ARG CROSS_BUILD_START=":"
 # set to "cross-build-end" if build on x86_64
-ARG CROSS_BUILD_END=":"
+#ARG CROSS_BUILD_END=":"
 
-RUN [ ${CROSS_BUILD_START} ]
+#RUN [ ${CROSS_BUILD_START} ]
 
 ENV LANG C.UTF-8
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
-	git \
-	wget \
-	openjdk-8-jre \
-	openjdk-8-jdk \
-	ca-certificates-java \
-	--no-install-recommends && \
-	rm -rf /var/lib/apt/lists/* && \
-	/var/lib/dpkg/info/ca-certificates-java.postinst configure
+#RUN apt-get update && apt-get install -y \
+#	git \
+#	wget \
+#	openjdk-8-jre \
+#	openjdk-8-jdk \
+#	ca-certificates-java \
+#	--no-install-recommends && \
+#	rm -rf /var/lib/apt/lists/* && \
+#	/var/lib/dpkg/info/ca-certificates-java.postinst configure
 
 # Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-armhf
+#ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-armhf
+
 # Repository 
 ENV REPOSITORY https://github.com/Tob1as/TelefonWahnsinn.git
 
@@ -50,4 +52,4 @@ VOLUME ["/config","/sys/class/gpio"]
 # Define default command
 CMD ["java","-jar","/TelefonWahnsinn.jar"]
 
-RUN [ ${CROSS_BUILD_END} ]
+#RUN [ ${CROSS_BUILD_END} ]
