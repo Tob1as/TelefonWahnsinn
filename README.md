@@ -1,17 +1,26 @@
 # TelefonWahnsinn (PhoneMadness)
 
+### What is PhoneMadness (TelefonWahnsinn) ?
+
 DE: *"Eine in JAVA geschriebene Anwendung überwacht verschiedene Sensoren (Telefon -Innovaphone-, Fritz!Box, Türsensor) und schaltet dementsprechend die Musik (Player: MPD, XBMC oder VLC) auf stop/pause oder play."*
 
 EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovaphone-, Fritz!Box, doorsensor) and switched accordingly the music (player: MPD, XBMC or VLC) to stop / pause or play."*  
 
 We/I used it in our office. ;)  
 
+### Supported tags and respective `Dockerfile` links
+-	[`latest` (*Dockerfile*)](https://github.com/Tob1as/TelefonWahnsinn/blob/master/alpine.armhf.Dockerfile)
+
+### This Image on
+* [DockerHub](https://hub.docker.com/r/tobi312/rpi-phonemadness)
+* [GitHub](https://github.com/Tob1as/TelefonWahnsinn)
+
 ### Developer
 * Felix W.
 * [Tobias H.](https://github.com/Tob1as)
 
 
-#### used libraries : 
+### used libraries : 
 *  commons-codec [Apache Commons Codec](http://commons.apache.org/proper/commons-codec/download_codec.cgi) or [mvnrepository](https://mvnrepository.com/artifact/commons-codec/commons-codec)
 *  guice-no-aop [GitHub: Google Guice](https://github.com/google/guice/) or [mvnrepository](https://mvnrepository.com/artifact/com.google.inject/guice)
 *  javampd [GitHub: JavaMPD](https://github.com/finnyb/javampd) or [mvnrepository](https://mvnrepository.com/artifact/net.thejavashop/javampd)
