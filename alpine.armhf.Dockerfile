@@ -1,5 +1,6 @@
 # Pull image to build java file with maven
-FROM openjdk:8-jdk-alpine AS java-builder
+#FROM openjdk:8-jdk-alpine AS java-builder
+FROM balenalib/raspberry-pi-alpine-openjdk:8-jdk-latest AS java-builder
 
 ENV LANG C.UTF-8
 
