@@ -12,7 +12,8 @@ RUN cd /telefonwahnsinn \
 
 # Pull image to run the application
 #FROM balenalib/raspberry-pi-openjdk:8-jre-latest
-FROM balenalib/raspberry-pi-alpine-openjdk:8-jre-latest
+#FROM balenalib/raspberry-pi-alpine-openjdk:8-jre-latest
+FROM arm32v7/openjdk:8-jre-alpine
 
 LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
 	org.opencontainers.image.title="TelefonWahnsinn (PhoneMadness)" \
