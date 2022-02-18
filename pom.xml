@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>TelefonWahnsinn</name>
-	<url>https://gitlab.rlp.net/hsmainzgv/employee/TelefonWahnsinn</url>
+	<url>https://github.com/Tob1as/TelefonWahnsinn</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
