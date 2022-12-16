@@ -9,7 +9,7 @@ EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovap
 We/I used it in our office. ;)  
 
 ### Supported tags and respective `Dockerfile` links
--	[`latest` (*Dockerfile*)](https://github.com/Tob1as/TelefonWahnsinn/blob/master/alpine.armhf.Dockerfile)
+-	[`latest` (*Dockerfile*)](https://github.com/Tob1as/TelefonWahnsinn/blob/master/alpine.Dockerfile)
 
 ### This Image on
 * [DockerHub](https://hub.docker.com/r/tobi312/rpi-phonemadness)
