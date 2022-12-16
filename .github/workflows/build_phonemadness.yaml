@@ -9,6 +9,8 @@ on:
   #    - 'alpine.Dockerfile'
   #    - '.github/workflows/build_phonemadness.yaml'
   #    - 'src/*'
+  #  tags:
+  #    - "v*.*.*"
   workflow_dispatch:
   #schedule:
   #  - cron: '30 5 26 * *'  # At 05:30 on day-of-month 26.
@@ -57,16 +59,22 @@ jobs:
       - name: Package-prepare
         run: |
           #ls -la target/
-          mkdir application
-          cp target/*-jar-with-dependencies.jar application/
-          mkdir -p application/config
-          cp config/config.xml.example application/config/config.xml
-          ls -la application/
-      - name: Package-Upload
+          mkdir -p phonemadness/config
+          cp target/*-jar-with-dependencies.jar phonemadness/TelefonWahnsinn.jar
+          cp config/config.xml.example phonemadness/config/config.xml
+          ls -la phonemadness/
+          tar cvpzf TelefonWahnsinn.tar.gz phonemadness/
+      - name: Package-Artifact-Upload
         uses: actions/upload-artifact@v3
         with:
-          name: PhoneMadness
-          path: application
+          name: TelefonWahnsinn
+          path: phonemadness
+      - name: Package-Release-Upload
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            TelefonWahnsinn.tar.gz
 
       - name: Set up QEMU
         id: qemu
