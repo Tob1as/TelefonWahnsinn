@@ -6,7 +6,7 @@ DE: *"Eine in JAVA geschriebene Anwendung überwacht verschiedene Sensoren (Tele
 
 EN: *"A Application written in JAVA monitors various sensors (Telephone -Innovaphone-, Fritz!Box, doorsensor) and switched accordingly the music (player: MPD, XBMC or VLC) to stop / pause or play."*  
 
-We/I used it in our office. ;)  
+We/I used it in our office until 2019. ;)  
 
 ### Supported tags and respective `Dockerfile` links
 -	[`latest` (*Dockerfile*)](https://github.com/Tob1as/TelefonWahnsinn/blob/master/alpine.Dockerfile)
@@ -38,7 +38,7 @@ We/I used it in our office. ;)
 ##### Requirements
 
 * Network connection between the devices
-* installed *Java 8* and set environment variables JAVA_HOME
+* installed [*Java 8*](https://adoptium.net/temurin/releases/?version=8) and set environment variables JAVA_HOME
 
 ##### Usage
 
@@ -62,31 +62,48 @@ We/I used it in our office. ;)
   ```
   
 	* Make your settings
-	* Note: If you want use the doorsensor, then use a Raspberry Pi to run the JAR-File and *magnetic contact* (DE: *Magnetkontakt/Reedkontakt*) e.g on GPIO Pin 4.
-* start it with: ``` java -jar TelefonWahnsinn-jar-with-dependencies.jar ```
-
-RaspberryPi GPIO Notice:
-* ``` sudo nano /etc/rc.local ```
-* copy next lines before: exit 0 and then reboot
-* ``` echo 4 > /sys/class/gpio/export ```
-* ``` echo in > /sys/class/gpio/gpio4/direction ```
-
-Fritz!Box Notice:
-* Fritz!Box need active CallMonitor ```#96*5*``` (Port: 1012) [or see here](https://www.janrufmonitor.de/ueberwachung-freischalten/).
+	* start it with: ``` java -jar TelefonWahnsinn-jar-with-dependencies.jar ```
 
 #### Docker (e.g. on RaspberryPi)
 
 ##### Requirements
 
 * Network connection between the devices
-* installed *Docker* ``` sudo curl -sSL https://get.docker.com | sh ``` and then ``` sudo usermod -aG docker pi ```
+* installed [*Docker*](https://docs.docker.com/engine/install/):
+	* ```sudo curl -sSL https://get.docker.com | sh```
+	* ```sudo usermod -aG docker pi```
 
 ##### Usage
 
-* ``` docker pull tobi312/rpi-phonemadness:latest ```
-* ``` mkdir -p /home/pi/.config/telefonwahnsinn/config && wget -O /home/pi/.config/telefonwahnsinn/config/config.xml https://raw.githubusercontent.com/Tob1as/TelefonWahnsinn/master/config/config.xml.example ```
-* Make your settings: ``` nano /home/pi/.config/telefonwahnsinn/config/config.xml ```
-* ``` docker run --name telefonwahnsinn -d -v /home/pi/.config/telefonwahnsinn/config:/config:ro -v /sys/class/gpio:/sys/class/gpio:ro tobi312/rpi-phonemadness:latest ```
+```sh
+# create config folder
+mkdir -p /home/pi/.config/telefonwahnsinn/config
+# download example config (with wget)s
+wget https://raw.githubusercontent.com/Tob1as/TelefonWahnsinn/master/config/config.xml.example -O /home/pi/.config/telefonwahnsinn/config/config.xml
+# edit the config ans set your settings
+nano /home/pi/.config/telefonwahnsinn/config/config.xml
 
+# start
+docker run --name telefonwahnsinn \
+-v /home/pi/.config/telefonwahnsinn/config:/config:ro \
+-v /sys/class/gpio:/sys/class/gpio:ro \
+-d tobi312/rpi-phonemadness:latest
+```
+
+### Notes
+
+#### GPIO (only RaspberryPi):
+
+If you want use the doorsensor, then use a Raspberry Pi and *magnetic contact* (DE: *Magnetkontakt/Reedkontakt*) e.g on GPIO Pin 4.  
+
+RaspberryPi GPIO Settings:
+* ``` sudo nano /etc/rc.local ```
+* copy next lines before: exit 0 and then reboot
+* ``` echo 4 > /sys/class/gpio/export ```
+* ``` echo in > /sys/class/gpio/gpio4/direction ```
+
+#### Fritz!Box:
+
+Fritz!Box (Internet-Router) need active CallMonitor ```#96*5*``` (Port: 1012) [or see here](https://www.janrufmonitor.de/ueberwachung-freischalten/).
 
 #### Have FUN!
