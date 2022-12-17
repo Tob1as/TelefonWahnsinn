@@ -38,7 +38,8 @@ jobs:
           #DOCKER_REPO=${{ secrets.DOCKER_USERNAME }}/${GITHUB_REPO_SHORT}
           DOCKER_REPO=${{ secrets.DOCKER_USERNAME }}/rpi-phonemadness
           #REDHAT_QUAY_REPO=${{ secrets.REDHAT_QUAY_USERNAME }}/${GITHUB_REPO_SHORT}
-          
+          GITHUB_TAG=${GITHUB_REF_NAME}
+
           # Set output parameters to GitHub action.
           echo ::set-output name=build_date::${BUILD_DATE}
           echo ::set-output name=build_date_numeric::${BUILD_DATE_NUMERIC}
@@ -46,6 +47,7 @@ jobs:
           echo ::set-output name=github_repo::${GITHUB_REPO}
           echo ::set-output name=docker_repo::${DOCKER_REPO}
           #echo ::set-output name=redhat_quay_repo::${REDHAT_QUAY_REPO}
+           echo ::set-output name=github_tag::${GITHUB_TAG}
 
       - name: Java-Setup
         uses: actions/setup-java@v3
@@ -73,6 +75,10 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          #body_path: RELEASE_INFO.md
+          body: "For more information read README."
+          draft: false
+          prerelease: false
           files: |
             TelefonWahnsinn.tar.gz
 
@@ -121,9 +127,11 @@ jobs:
             BUILD_DATE=${{steps.script.outputs.build_date}}
             VCS_REF=${{steps.script.outputs.commit_hash}}
             PHONEMADNESS_VERSION="1.0.0"
+          #  PHONEMADNESS_VERSION=${{steps.script.outputs.github_tag}}
           tags: |
             docker.io/${{steps.script.outputs.docker_repo}}:latest
             ghcr.io/${{steps.script.outputs.github_repo}}:latest
+          #  ghcr.io/${{steps.script.outputs.github_repo}}:${{steps.script.outputs.github_tag}}
           #  ghcr.io/${{steps.script.outputs.github_repo}}:${{steps.script.outputs.build_date_numeric}}.${{steps.script.outputs.commit_hash}}
           #  quay.io/${{steps.script.outputs.redhat_quay_repo}}:latest
 
