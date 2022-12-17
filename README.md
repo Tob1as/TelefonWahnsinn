@@ -78,9 +78,9 @@ We/I used it in our office until 2019. ;)
 ```sh
 # create config folder
 mkdir -p /home/pi/.config/telefonwahnsinn/config
-# download example config (with wget)s
+# download example config (with wget)
 wget https://raw.githubusercontent.com/Tob1as/TelefonWahnsinn/master/config/config.xml.example -O /home/pi/.config/telefonwahnsinn/config/config.xml
-# edit the config ans set your settings
+# edit the config and set your settings
 nano /home/pi/.config/telefonwahnsinn/config/config.xml
 
 # start
