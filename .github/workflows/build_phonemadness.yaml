@@ -6,9 +6,10 @@ on:
   #  #  - 'main'
   #  #  - 'master'
   #  paths:
-  #    - 'alpine.Dockerfile'
   #    - '.github/workflows/build_phonemadness.yaml'
+  #    - 'alpine.Dockerfile'
   #    - 'src/*'
+  #    - 'pom.xml'
   #  tags:
   #    - "v*.*.*"
   workflow_dispatch:
