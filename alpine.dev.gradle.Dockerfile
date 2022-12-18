@@ -1,16 +1,30 @@
-FROM maven:3-openjdk-8 AS java-builder
+FROM gradle:7.6-jdk8-jammy AS java-builder
 
 ARG PHONEMADNESS_VERSION
 ENV LANG C.UTF-8
-ENV MAVEN_OPTS "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=/.m2/repository -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
-ENV MAVEN_CLI_OPTS "--batch-mode --errors --fail-at-end --show-version --no-transfer-progress -DinstallAtEnd=true -DdeployAtEnd=true"
-#ENV MAVEN_CLI_OPTS "--batch-mode"
+ENV GRADLE_OPTS "-Dorg.gradle.daemon=false -Dorg.gradle.welcome=never -Dmaven.repo.local=/home/gradle/.m2/repository"
 
 # build
-COPY .  /telefonwahnsinn
-RUN \
-    cd /telefonwahnsinn ; \
-    mvn $MAVEN_CLI_OPTS package --file pom.xml -DskipTests
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle init -V; \
+    echo '\
+\n\
+jar {\n\
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE\n\ 
+    manifest {\n\
+        attributes "Main-Class": "de.hs_mainz.TelefonWahnsinn.Starter"\n\
+    }\n\
+    baseName = project.name + "-jar-with-dependencies"\n\
+    from {\n\
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }\n\
+    }\n\
+}\n\
+' >> /home/gradle/src/build.gradle ; \
+    more /home/gradle/src/build.gradle
+RUN gradle build
+
+RUN ls -lah /home/gradle/src/build/libs/
 
 FROM openjdk:8-jre-alpine
 
@@ -30,8 +44,8 @@ LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
     org.opencontainers.image.source="https://github.com/Tob1as/TelefonWahnsinn"
 
 # Copy application from build image
-COPY --from=java-builder /telefonwahnsinn/target/TelefonWahnsinn-jar-with-dependencies.jar /TelefonWahnsinn.jar
-COPY --from=java-builder /telefonwahnsinn/config/config.xml.example /config/config.xml
+COPY --from=java-builder /home/gradle/src/build/libs/*.jar /TelefonWahnsinn.jar
+COPY --from=java-builder /home/gradle/src/config/config.xml.example /config/config.xml
 
 # Define Volumes
 VOLUME ["/config","/sys/class/gpio"]
