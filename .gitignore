@@ -5,6 +5,7 @@
 .project
 *.jar
 .mvn/
+.gradle/
 /config/config.xml
 # https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
 .idea/
